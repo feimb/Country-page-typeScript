@@ -1,1 +1,21 @@
 @import "tailwindcss";
+
+@theme {
+    --font-primary: "Be Vietnam Pro", sans-serif;
+
+    --bg-primary: #1b1d1f;
+
+    --border-primary: #282b30;
+
+    --text-primary: #d2d5da;
+
+    --loading-primary: #6c727f;
+
+    --check-color: #4e80ee;
+}
+
+body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-primary);
+}
+
