@@ -5,7 +5,7 @@ import Logo from "../assets/Logo.svg";
 export const MainLayout = () => {
     return (
         <main className="relative">
-            <div className="h-[30vh]  w-full flex items-center justify-center bg-[#000002] absolute -z-10">
+            <div className="h-[40vh]  w-full flex items-center justify-center bg-[#000002] absolute -z-10">
                 <img
                     src={heroImg}
                     alt=""
@@ -17,7 +17,7 @@ export const MainLayout = () => {
                     className="h-full md:hidden object-cover"
                 />
             </div>
-            <div className="w-full h-[25vh] md:h-[30vh] flex items-center justify-center">
+            <div className="w-full h-[15vh] md:h-[35vh] flex items-center justify-center">
                 <img
                     src={Logo}
                     alt="world rank logo"

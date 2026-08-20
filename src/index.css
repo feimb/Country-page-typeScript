@@ -3,20 +3,20 @@
 @theme {
     --font-primary: "Be Vietnam Pro", sans-serif;
 
-    --bg-primary: #1b1d1f;
+    --color-primary: #1b1d1f;
 
-    --border-primary: #282b30;
+    --color-border-primary: #282b30;
 
-    --text-primary: #d2d5da;
+    --color-text-primary: #d2d5da;
 
-    --loading-primary: #6c727f;
+    --color-loading-primary: #6c727f;
 
-    --check-color: #4e80ee;
+    --color-check-color: #4e80ee;
 }
 
 body {
     font-family: var(--font-primary);
-    background-color: var(--bg-primary);
-    color: var(--text-primary);
+    background-color: var(--color-primary);
+    color: var(--color-text-primary);
 }
 
