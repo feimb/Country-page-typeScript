@@ -26,6 +26,9 @@ export const Index = () => {
                     <Skeleton count={1} width={140}/>
                 </p>
             }
+            ) : (
+                <CardSkeleton />
+            )}
         </Card>
     );
 };
