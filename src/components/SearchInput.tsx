@@ -11,10 +11,10 @@ export const SearchInput = ({
     };
 
     return (
-        <div className="w-full  p-2 gap-2  rounded-lg bg-border-primary text-text-primary flex items-center col-span-3">
+        <div className="w-full  p-2 gap-2  rounded-lg bg-border-primary text-text-primary flex items-center col-span-6">
             <Search />
             <input
-                className="outline-none text-text-primary placeholder:text-text-primary/80"
+                className="outline-none text-text-primary placeholder:text-text-primary/80 overflow-hidden"
                 type="text"
                 placeholder="Search by Name, Region..."
                 value={search}

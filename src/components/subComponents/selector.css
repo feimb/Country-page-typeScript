@@ -1,0 +1,10 @@
+select {
+  background: var(--color-primary);
+  color: var(--color-text-primary);
+  
+}
+
+option {
+  background: var(--color-primary);
+  color: var(--color-text-primary);
+}
