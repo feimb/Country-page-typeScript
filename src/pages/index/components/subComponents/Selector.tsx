@@ -7,7 +7,7 @@ export const Selector = () => {
     return (
         <div className=" relative flex ">
             <select
-                value={"population"}
+                defaultValue={"population"}
                 id="selector"
                 className="w-full appearance-none border border-border-primary p-2 text-sm rounded-lg outline-0 peer"
             >

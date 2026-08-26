@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Card } from "../../layout/Card";
 import getCountry from "../../services/getCountry";
 import { CardSkeleton } from "./Skeleton/CardSkeleton";
-import { SearchInput } from "../../components/SearchInput";
-import { SortBy } from "../../components/SortBy";
+import { SearchInput } from ".//components/SearchInput";
+import { SortBy } from "./components/SortBy";
 
 export const Index = () => {
     const [country, setCountry] = useState<any>(null);
@@ -26,17 +26,18 @@ export const Index = () => {
             {country ? (
                 <div>
                     <div className="w-full flex flex-col md:grid md:grid-cols-12 md:items-baseline-last ">
-                        <p className="text-sm font-bold mb-6 whitespace-nowrap col-span-6">
+                        <p className="text-sm font-bold mb-6 whitespace-nowrap col-span-8">
                             Found {country.data.meta.total} countris
                         </p>
-                        <SearchInput setSearch={setSearch} search={search} />
+                        <SearchInput setSearch={setSearch} search={search} gridClass={"col-span-4"} />
                     </div>
                     <div className="w-full grid grid-cols-12">
                         <div className="col-span-2">
                             <SortBy />
+                            
                         </div>
-                        <div>
-
+                        <div className="col-span-10">
+                            
                         </div>
                     </div>
                 </div>
