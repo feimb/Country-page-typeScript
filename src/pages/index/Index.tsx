@@ -4,6 +4,7 @@ import getCountry from "../../services/getCountry";
 import { CardSkeleton } from "./Skeleton/CardSkeleton";
 import { SearchInput } from ".//components/SearchInput";
 import { SortBy } from "./components/SortBy";
+import { SortRegion } from "./components/SortRegion";
 
 export const Index = () => {
     const [country, setCountry] = useState<any>(null);
@@ -34,7 +35,7 @@ export const Index = () => {
                     <div className="w-full grid grid-cols-12">
                         <div className="col-span-2">
                             <SortBy />
-                            
+                            <SortRegion />
                         </div>
                         <div className="col-span-10">
                             
