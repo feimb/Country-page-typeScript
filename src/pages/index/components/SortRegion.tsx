@@ -1,11 +1,15 @@
 import { useState } from "react";
 
 export const SortRegion = () => {
-    const buttons = ["Americas", "Antartic", "Africa", "Asia", "Europe"];
+    const buttons = ["Americas", "Antartic", "Africa", "Asia", "Europe","Oceania"];
     const [activeButton, setActiveButton] = useState<string>("");
     const handleClick = (button: string) => {
-        setActiveButton(button);
-        console.log(button);
+        if (!activeButton.includes(button)){
+            setActiveButton( `${activeButton} ${button}`);
+        }else(
+            setActiveButton(activeButton.replace(button, " "))
+        )
+        
     };
     return (
         <div className="mt-4">
@@ -13,7 +17,7 @@ export const SortRegion = () => {
             <div>
                 {buttons.map((button) => (
                     <button
-                        className={`px-2 py-1.5 m-1 text-sm  font-primary font-medium  bg-border-primary  rounded-xl cursor-pointer ${activeButton === button ? "bg-primary" : ""} transition-all duration-300`}
+                        className={`px-2 py-1.5 m-1 text-sm  font-primary font-medium  bg-border-primary  rounded-xl cursor-pointer ${activeButton.includes(button) ? "bg-primary" : ""} transition-all duration-300`}
                         onClick={() => handleClick(button)}
                         key={button}
                     >
