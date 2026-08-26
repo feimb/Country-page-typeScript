@@ -31,7 +31,14 @@ export const Index = () => {
                         </p>
                         <SearchInput setSearch={setSearch} search={search} />
                     </div>
-                    <SortBy />
+                    <div className="w-full grid grid-cols-12">
+                        <div className="col-span-2">
+                            <SortBy />
+                        </div>
+                        <div>
+
+                        </div>
+                    </div>
                 </div>
             ) : (
                 <CardSkeleton />
