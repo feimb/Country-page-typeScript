@@ -5,6 +5,7 @@ import { CardSkeleton } from "./Skeleton/CardSkeleton";
 import { SearchInput } from ".//components/SearchInput";
 import { SortBy } from "./components/SortBy";
 import { SortRegion } from "./components/SortRegion";
+import { SortMember } from "./components/SortMember";
 
 export const Index = () => {
     const [country, setCountry] = useState<any>(null);
@@ -32,10 +33,11 @@ export const Index = () => {
                         </p>
                         <SearchInput setSearch={setSearch} search={search} gridClass={"col-span-4"} />
                     </div>
-                    <div className="w-full grid grid-cols-12">
-                        <div className="col-span-2">
+                    <div className="w-full md:grid grid-cols-12">
+                        <div className=" md:col-span-2">
                             <SortBy />
                             <SortRegion />
+                            <SortMember />
                         </div>
                         <div className="col-span-10">
                             
