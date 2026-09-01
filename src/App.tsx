@@ -9,6 +9,7 @@ function App() {
             <Routes>
                 <Route element={<MainLayout />}>
                     <Route path="/" element={<Index />} />
+                    <Route path="/:code" />
                 </Route>
             </Routes>
         </SkeletonTheme>

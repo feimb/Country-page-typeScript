@@ -65,16 +65,14 @@ export const Index = () => {
                                     </tr>
                                 </thead>
                                 <tbody className="border-separate border-spacing-y-4">
-                                    {/* aqui va el map :) */}
-                                    {countrys.data.objects.slice(1).map(
-                                        (country: any) => (
-                                            <CountryRow
-                                                key={country.codes.alpha_3 }
-                                                country={country}
-                                            />
-                                        ),
-                                    )}
-                                    {/* aqui va el map :) */}
+                                    {countrys.data.objects
+                                        .slice(1)
+                                        .map((country: any) => (
+                                                <CountryRow
+                                                    key={country.codes.alpha_3}
+                                                    country={country}
+                                                />
+                                        ))}
                                 </tbody>
                             </table>
                         </div>
