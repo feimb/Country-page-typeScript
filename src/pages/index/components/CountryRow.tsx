@@ -10,7 +10,7 @@ export const CountryRow = ({ country }: any) => {
                 />
             </td>
             {columns.map((item)=>(
-                <td>
+                <td key={item}>
                     {item}
                 </td>
             ))}
