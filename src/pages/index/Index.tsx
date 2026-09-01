@@ -31,7 +31,7 @@ export const Index = () => {
         "Region",
     ];
     return (
-        <Card className="min-h-[60vh] py-4 md:px-8 px-3 -mt-4">
+        <>
             {countrys ? (
                 <div>
                     <div className="w-full flex flex-col md:grid md:grid-cols-12 md:items-baseline-last mb-4">
@@ -81,6 +81,6 @@ export const Index = () => {
             ) : (
                 <CardSkeleton />
             )}
-        </Card>
+        </>
     );
 };

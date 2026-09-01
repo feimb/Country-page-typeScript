@@ -1,8 +1,8 @@
 import heroImg from "../assets/hero-image.jpg";
 import heroImgSm from "../assets/hero-image-sm.jpg";
-import { Outlet } from "react-router";
 import Logo from "../assets/Logo.svg";
-export const MainLayout = () => {
+import type React from "react";
+export const MainLayout = ({children}:{children:React.ReactNode}) => {
     return (
         <main className="relative">
             <div className="h-[40vh]  w-full flex items-center justify-center bg-[#000002] absolute -z-10">
@@ -24,7 +24,7 @@ export const MainLayout = () => {
                     className=" "
                 />
             </div>
-            <Outlet />
+            {children}
         </main>
     );
 };
