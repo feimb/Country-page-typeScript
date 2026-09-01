@@ -50,7 +50,7 @@ export const Index = () => {
                             <SortRegion />
                             <SortMember />
                         </div>
-                        <div className="col-span-10 px-8 border-separate border-spacing-y-4">
+                        <div className="mt-8 md:mt-0 col-span-10 md:px-8 border-separate border-spacing-y-4">
                             <table className="w-full h-full ">
                                 <thead className=" ">
                                     <tr className="text-xs font-bold  ">
@@ -69,7 +69,7 @@ export const Index = () => {
                                     {countrys.data.objects.slice(1).map(
                                         (country: any) => (
                                             <CountryRow
-                                                key={country.codes.ccn3 || null }
+                                                key={country.codes.alpha_3 }
                                                 country={country}
                                             />
                                         ),
