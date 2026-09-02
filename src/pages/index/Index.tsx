@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { Card } from "../../layout/Card";
-import getCountry from "../../services/getCountry";
+import getCountrys from "../../services/getCountrys";
 import { CardSkeleton } from "./Skeleton/CardSkeleton";
 import { SearchInput } from ".//components/SearchInput";
 import { SortBy } from "./components/SortBy";
@@ -16,7 +15,7 @@ export const Index = () => {
     }, [setSearch]);
     useEffect(() => {
         const fetchCountries = async () => {
-            const data = await getCountry();
+            const data = await getCountrys();
 
             console.log(data);
             setCountrys(data);
