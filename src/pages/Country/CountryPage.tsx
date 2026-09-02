@@ -1,13 +1,22 @@
+import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { Card } from "../../layout/Card";
+import getCountry from "../../services/getCountry";
 
 export const CountryPage = () => {
-    const { code } = useParams();
-    console.log(code)
+    const { code } = useParams<string>();
+    const [country, setCountry] = useState<any>(null);
+    useEffect(()=>{
+        const fetchCountry = async (code:string) =>{
+            const data = await getCountry(code);
+
+            console.log(data);
+            setCountry(data);
+        }
+        fetchCountry(code);
+    },[])
     return (
         <>
-            <div className="">{code}</div>
-        
+           <div></div>
         </>
     );
 };

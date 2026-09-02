@@ -1,9 +1,9 @@
 import api from "./api/api"
 
 
-async function getCountry() {
+async function getCountry(code:string) {
     try{
-        const response = await api.get("");
+        const response = await api.get(`codes.alpha_3/${code}`);
         return response.data
     }catch(err){
         console.error(err)
