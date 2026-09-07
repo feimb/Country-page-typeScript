@@ -4,7 +4,7 @@ import Logo from "../assets/Logo.svg";
 import type React from "react";
 export const MainLayout = ({children}:{children:React.ReactNode}) => {
     return (
-        <main className="relative">
+        <main className={"relative"}>
             <div className="h-[40vh]  w-full flex items-center justify-center bg-[#000002] absolute -z-10">
                 <img
                     src={heroImg}

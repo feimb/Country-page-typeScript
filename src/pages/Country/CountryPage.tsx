@@ -10,8 +10,8 @@ export const CountryPage = () => {
         const fetchCountry = async () => {
             const data = await getCountry(code);
 
-            console.log(data);
-            setCountry(data);
+            console.log(data.data.objects[0]);
+            setCountry(data.data.objects[0]);
         };
         fetchCountry();
     }, []);
@@ -19,7 +19,7 @@ export const CountryPage = () => {
         <>
             <div>
                 {country && (
-                    <img src={country.data.objects[0].flag.url_png} alt="" />
+                    <img src={country.flag.url_png} alt="" />
                 )}
             </div>
         </>

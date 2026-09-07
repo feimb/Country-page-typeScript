@@ -8,8 +8,10 @@ function App() {
     return (
         <SkeletonTheme baseColor="#6c727f" highlightColor="#444">
             <Routes>
-                <Route element={<CountriesLayout />}>
+                <Route element={<CountriesLayout className=""/>}>
                     <Route path="/" element={<Index />} />
+                </Route>
+                <Route element={<CountriesLayout className="w-full rounded-none sm:w-[95%] sm:rounded-lg" />}>
                     <Route path="/:code" element={<CountryPage/>} />
                 </Route>
             </Routes>
