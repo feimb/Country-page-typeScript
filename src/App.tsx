@@ -11,7 +11,7 @@ function App() {
                 <Route element={<CountriesLayout className=""/>}>
                     <Route path="/" element={<Index />} />
                 </Route>
-                <Route element={<CountriesLayout className="w-full rounded-none sm:w-[95%] sm:rounded-lg" />}>
+                <Route element={<CountriesLayout className="w-full rounded-none mt-16   sm:w-[75%] sm:rounded-lg  md:-mt-4" />}>
                     <Route path="/:code" element={<CountryPage/>} />
                 </Route>
             </Routes>

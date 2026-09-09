@@ -15,11 +15,40 @@ export const CountryPage = () => {
         };
         fetchCountry();
     }, []);
+    const arrMetadata: Array<{ nameData: string; cant: number }> = [
+        {
+            nameData: "Population",
+            cant: country.population,
+        },
+        { nameData: "Area (km²)", cant: country.area.kilometers },
+    ];
     return (
         <>
-            <div>
+            <div className="w-65 flex m-auto">
                 {country && (
-                    <img src={country.flag.url_png} alt="" />
+                    <div>
+                        <img
+                            src={country.flag.url_png}
+                            alt=""
+                            className="-mt-16 rounded-lg"
+                        />
+                        <div className="text-center mt-6">
+                            <h3 className="text-lg font-bold">
+                                {country.names.common}
+                            </h3>
+                            <h4 className="text-sm">
+                                {country.names.official}
+                            </h4>
+                        </div>
+                        <div className="">
+                            {arrMetadata.map(({nameData, cant}:{nameData:string; cant:number})=>(
+                                <div>
+                                    <p>{nameData}</p>
+                                    <p>{cant}</p>
+                                </div>
+                            ))} 
+                        </div>
+                    </div>
                 )}
             </div>
         </>
