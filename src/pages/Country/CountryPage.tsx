@@ -57,7 +57,7 @@ export const CountryPage = () => {
                                         nameData: string;
                                         cant: number;
                                     }) => (
-                                        <div>
+                                        <div key={nameData}>
                                             <p>{nameData}</p>
                                             <p>{cant}</p>
                                         </div>
