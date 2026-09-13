@@ -33,7 +33,7 @@ export const Index = () => {
         <>
             {countrys ? (
                 <div>
-                    <div className="w-full flex flex-col md:grid md:grid-cols-12 md:items-baseline-last mb-4">
+                    <div className="w-full   flex flex-col md:grid md:grid-cols-12 md:items-baseline-last mb-4">
                         <p className="text-sm font-bold mb-6 whitespace-nowrap col-span-8">
                             Found {countrys.data.meta.total} countris
                         </p>

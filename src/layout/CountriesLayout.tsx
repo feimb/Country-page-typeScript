@@ -6,7 +6,7 @@ export const CountriesLayout = ({className}:{className?:string}) => {
     return (
         
         <MainLayout >
-            <Card className={`min-h-[60vh] py-4 md:px-8 px-3 -mt-4 ${className}`}>
+            <Card className={`min-h-[60vh]   -mt-4 ${className}`}>
                 <Outlet />
             </Card>
         </MainLayout>
