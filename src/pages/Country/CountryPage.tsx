@@ -48,7 +48,7 @@ export const CountryPage = () => {
             setCountry(infoCountry);
         };
         fetchCountry();
-    }, []);
+    }, [code]);
 
     return (
         <>
