@@ -1,6 +1,7 @@
 import { useParams } from "react-router";
 import { CountryDataRow } from "./components/CountryDataRow";
 import { useCountry } from "../../hooks/useCountry";
+import { NeighbouringCountry } from "./components/NeighbouringCountry";
 export const CountryPage = () => {
     const { code } = useParams<{ code: string | undefined }>();
     const { country, loading } = useCountry(code);
@@ -43,7 +44,7 @@ export const CountryPage = () => {
         },
         { title: "Continents", content: country.continents },
     ];
-
+    console.log(country);
     return (
         <>
             <div className="w-full flex  justify-center ">
@@ -81,7 +82,7 @@ export const CountryPage = () => {
                                 ),
                             )}
                     </div>
-                    <div className="w-full   mt-8 ">
+                    <div className="w-full  mt-8 ">
                         {countryData.map(({ title, content }) => {
                             return (
                                 <CountryDataRow
@@ -91,6 +92,20 @@ export const CountryPage = () => {
                                 />
                             );
                         })}
+                    </div>
+                    <div className="w-full p-4 mb-8">
+                        <h3>Neighbouring Countries</h3>
+                        <div className="flex gap-4 py-2">
+                            {country.borders.map(
+                                (border: string, index: number) => (
+                                    <NeighbouringCountry
+                                        code={border}
+                                        key={border}
+                                        delay={index * 1000}
+                                    />
+                                ),
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
