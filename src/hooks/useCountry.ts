@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import getCountry from "../services/getCountry";
-export const useCountry = (code: string | undefined) => {
+export const useCountry = (code: string | undefined, delay: number = 0) => {
     const [country, setCountry] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
@@ -16,7 +16,11 @@ export const useCountry = (code: string | undefined) => {
                 setLoading(false);
             }
         };
-        fetchCountry();
+       const timer = setTimeout(() => {
+            fetchCountry();
+        }, delay);
+
+         return () => clearTimeout(timer)
     }, [code]);
 
     return { country, loading };
