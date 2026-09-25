@@ -5,7 +5,7 @@ import { SearchInput } from ".//components/SearchInput";
 import { SortBy } from "./components/SortBy";
 import { SortRegion } from "./components/SortRegion";
 import { SortMember } from "./components/SortMember";
-import { CountryRow } from "./components/CountryRow";
+import { CountrySection } from "./components/CountrySection";
 
 export const Index = () => {
     const [countrys, setCountrys] = useState<any>(null);
@@ -17,8 +17,8 @@ export const Index = () => {
         const fetchCountries = async () => {
             const data = await getCountrys();
 
-            console.log(data);
-            setCountrys(data);
+            console.log(data.data);
+            setCountrys(data.data);
         };
         fetchCountries();
     }, []);
@@ -35,7 +35,7 @@ export const Index = () => {
                 <div>
                     <div className="w-full   flex flex-col md:grid md:grid-cols-12 md:items-baseline-last mb-4">
                         <p className="text-sm font-bold mb-6 whitespace-nowrap col-span-8">
-                            Found {countrys.data.meta.total} countris
+                            Found {countrys.meta.total} countris
                         </p>
                         <SearchInput
                             setSearch={setSearch}
@@ -49,32 +49,7 @@ export const Index = () => {
                             <SortRegion />
                             <SortMember />
                         </div>
-                        <div className="mt-8 md:mt-0 col-span-10 md:px-8 border-separate border-spacing-y-4">
-                            <table className="w-full h-full ">
-                                <thead className=" ">
-                                    <tr className="text-xs font-bold  ">
-                                        {titles.map((title) => (
-                                            <td
-                                                className="pb-4 border-b-2  border-border-primary"
-                                                key={title}
-                                            >
-                                                {title}
-                                            </td>
-                                        ))}
-                                    </tr>
-                                </thead>
-                                <tbody className="border-separate border-spacing-y-4">
-                                    {countrys.data.objects
-                                        .slice(1)
-                                        .map((country: any) => (
-                                                <CountryRow
-                                                    key={country.codes.alpha_3}
-                                                    country={country}
-                                                />
-                                        ))}
-                                </tbody>
-                            </table>
-                        </div>
+                        <CountrySection titles={titles} countrys={countrys.objects}/>
                     </div>
                 </div>
             ) : (
