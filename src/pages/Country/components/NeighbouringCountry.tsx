@@ -7,7 +7,7 @@ export const NeighbouringCountry = ({
     code: string;
     delay: number | undefined;
 }) => {
-    const { country, loading } = useCountry(code);
+    const { country, loading } = useCountry(code, delay);
     if (loading) {
         return <div>esta Cargando</div>;
     }
