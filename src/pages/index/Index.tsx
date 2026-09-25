@@ -10,18 +10,30 @@ import { CountrySection } from "./components/CountrySection";
 export const Index = () => {
     const [countrys, setCountrys] = useState<any>(null);
     const [search, setSearch] = useState<string>("");
-    useEffect(() => {
-        console.log(search);
-    }, [setSearch]);
+
     useEffect(() => {
         const fetchCountries = async () => {
-            const data = await getCountrys();
+            try {
+                let data;
 
-            console.log(data.data);
-            setCountrys(data.data);
+                if (!search.trim()) {
+                    data = await getCountrys();
+                } else {
+                    data = await getCountrys(search);
+                }
+
+                console.log(data.data);
+                setCountrys(data.data);
+            } catch (err) {
+                console.error(err);
+            }
         };
-        fetchCountries();
-    }, []);
+        const timer = setTimeout(() => {
+            fetchCountries();
+        }, 1000);
+        return () => clearTimeout(timer)
+    }, [search]);
+
     const titles: Array<string> = [
         "Flag",
         "Name",
@@ -49,7 +61,10 @@ export const Index = () => {
                             <SortRegion />
                             <SortMember />
                         </div>
-                        <CountrySection titles={titles} countrys={countrys.objects}/>
+                        <CountrySection
+                            titles={titles}
+                            countrys={countrys.objects}
+                        />
                     </div>
                 </div>
             ) : (

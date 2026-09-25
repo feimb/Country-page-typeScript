@@ -19,7 +19,7 @@ export const SearchInput = ({ setSearch, search, gridClass }: props) => {
                 type="text"
                 placeholder="Search by Name, Region..."
                 value={search}
-                onChange={(e) => handleOnChange(e.target.value)}
+                onChange={(e) => handleOnChange(e.target.value.trim())}
             />
         </div>
     );
