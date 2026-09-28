@@ -1,9 +1,11 @@
 import api from "./api/api";
 
-async function getCountrys(query?: string) {
+async function getCountrys(limit:number, offset:number, query?: string | null) {
     try {
         const response = await api.get("", {
             params: {
+                limit: limit,
+                offset: offset, 
                 q: query,
             },
         });

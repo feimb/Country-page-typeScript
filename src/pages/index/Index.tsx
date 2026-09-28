@@ -9,17 +9,17 @@ import { CountrySection } from "./components/CountrySection";
 
 export const Index = () => {
     const [countrys, setCountrys] = useState<any>(null);
-    const [search, setSearch] = useState<string>("");
-
+    const [search, setSearch] = useState<string | null>(null);
+    const [page, setPage] = useState<number>(0);
     useEffect(() => {
         const fetchCountries = async () => {
             try {
                 let data;
 
-                if (!search.trim()) {
-                    data = await getCountrys();
+                if (!search?.trim()) {
+                    data = await getCountrys(25, page * 25);
                 } else {
-                    data = await getCountrys(search);
+                    data = await getCountrys(25, page * 25, search);
                 }
 
                 console.log(data.data);
@@ -31,7 +31,7 @@ export const Index = () => {
         const timer = setTimeout(() => {
             fetchCountries();
         }, 1000);
-        return () => clearTimeout(timer)
+        return () => clearTimeout(timer);
     }, [search]);
 
     const titles: Array<string> = [
