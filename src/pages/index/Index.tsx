@@ -8,8 +8,9 @@ import { SortMember } from "./components/SortMember";
 import { CountrySection } from "./components/CountrySection";
 
 export const Index = () => {
-    const [countrys, setCountrys] = useState<any>(null);
+    const [countrys, setCountrys] = useState<any[]>([]);
     const [search, setSearch] = useState<string | null>(null);
+    const [total, setTotal] = useState<number>(0);
     const [page, setPage] = useState<number>(0);
     useEffect(() => {
         const fetchCountries = async () => {
@@ -23,7 +24,8 @@ export const Index = () => {
                 }
 
                 console.log(data.data);
-                setCountrys(data.data);
+                setTotal(data.data.meta.total);
+                setCountrys((prev) => [...prev, ...data.data.objects]);
             } catch (err) {
                 console.error(err);
             }
@@ -32,7 +34,7 @@ export const Index = () => {
             fetchCountries();
         }, 1000);
         return () => clearTimeout(timer);
-    }, [search]);
+    }, [search, page]);
 
     const titles: Array<string> = [
         "Flag",
@@ -43,11 +45,11 @@ export const Index = () => {
     ];
     return (
         <>
-            {countrys ? (
+            {countrys.length > 0 ? (
                 <div>
                     <div className="w-full   flex flex-col md:grid md:grid-cols-12 md:items-baseline-last mb-4">
                         <p className="text-sm font-bold mb-6 whitespace-nowrap col-span-8">
-                            Found {countrys.meta.total} countris
+                            Found {total} countris
                         </p>
                         <SearchInput
                             setSearch={setSearch}
@@ -61,10 +63,15 @@ export const Index = () => {
                             <SortRegion />
                             <SortMember />
                         </div>
-                        <CountrySection
-                            titles={titles}
-                            countrys={countrys.objects}
-                        />
+                        <CountrySection titles={titles} countrys={countrys} />
+                        <button
+                            className="w-full mt-4 text-lg font-bold flex justify-center hover:underline hover:cursor-pointer"
+                            onClick={() => {
+                                setPage(page + 1);
+                            }}
+                        >
+                            view more countrys
+                        </button>
                     </div>
                 </div>
             ) : (
