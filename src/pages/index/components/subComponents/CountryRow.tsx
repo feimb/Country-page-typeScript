@@ -7,6 +7,9 @@ export const CountryRow = ({ country }: any) => {
         country.area.kilometers,
         country.region,
     ];
+    if(!country.flag.url_png){
+        return null
+    }
     return (
         <tr className=" border-transparent  ">
             <td className="py-1.5">

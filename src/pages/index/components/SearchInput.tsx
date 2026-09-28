@@ -2,7 +2,7 @@ import { Search } from "lucide-react";
 
 type props = {
     setSearch: (value: string) => void;
-    search: string;
+    search: string | null;
     gridClass: string
 };
 
@@ -18,7 +18,7 @@ export const SearchInput = ({ setSearch, search, gridClass }: props) => {
                 className="outline-none text-text-primary placeholder:text-text-primary/80 overflow-hidden"
                 type="text"
                 placeholder="Search by Name, Region..."
-                value={search}
+                value={search ?? ""}
                 onChange={(e) => handleOnChange(e.target.value.trim())}
             />
         </div>
