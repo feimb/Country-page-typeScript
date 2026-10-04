@@ -18,7 +18,7 @@ export const SortMember = () => {
                     <label htmlFor="independent" className={labelClass}>Independent</label>
                 </div> */}
                 {checks.map(({label, isActive})=>(
-                    <CheckBox label={label} isActive={isActive} key={label}/>
+                    <CheckBox label={label} isActive={isActive}  key={label}/>
                 ))}
             </div>
         </div>
