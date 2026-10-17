@@ -1,4 +1,5 @@
 import Skeleton from "react-loading-skeleton";
+import { CountrySectionSkeleton } from "./components/CountrySectionSkeleton";
 
 export const CardSkeleton = () => {
     const buttons = [
@@ -9,6 +10,7 @@ export const CardSkeleton = () => {
         "Europe",
         "Oceania",
     ];
+
     return (
         <div>
             <div className="w-full   flex flex-col md:grid md:grid-cols-12 md:items-baseline-last mb-4">
@@ -16,8 +18,7 @@ export const CardSkeleton = () => {
                     <Skeleton count={1} width={120} />
                 </p>
                 <div className="col-span-4">
-
-                <Skeleton  className="w-full  p-2 gap-2  rounded-lg bg-border-primary text-text-primary flex items-center "/>
+                    <Skeleton className="w-full  p-2 gap-2  rounded-lg bg-border-primary text-text-primary flex items-center " />
                 </div>
             </div>
             <div className="w-full md:grid grid-cols-12">
@@ -40,7 +41,7 @@ export const CardSkeleton = () => {
                         <div>
                             {buttons.map((btn) => (
                                 <button
-                                    className={`m-1 text-sm  font-primary font-medium    rounded-xl cursor-pointer`}
+                                    className={`m-1 ml-2 text-sm  font-primary font-medium rounded-xl cursor-pointer`}
                                 >
                                     <Skeleton
                                         width={btn.length * 10}
@@ -57,7 +58,10 @@ export const CardSkeleton = () => {
                     <Skeleton width={140} height={32} />
                     <Skeleton width={140} height={32} />
                 </div>
-                
+
+                {/* country Section */}
+                <CountrySectionSkeleton/>
+                            
             </div>
         </div>
     );
