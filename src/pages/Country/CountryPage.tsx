@@ -2,13 +2,16 @@ import { useParams } from "react-router";
 import { CountryDataRow } from "./components/CountryDataRow";
 import { useCountry } from "../../hooks/useCountry";
 import { NeighbouringCountry } from "./components/NeighbouringCountry";
+import { CountryPageSkeleton } from "./skeleton/CountryPageSkeleton";
 export const CountryPage = () => {
     const { code } = useParams<{ code: string | undefined }>();
     const { country, loading } = useCountry(code);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return <CountryPageSkeleton/>;
     }
+    
+
     if (!country) {
         return <div>Country not found</div>;
     }
@@ -95,7 +98,7 @@ export const CountryPage = () => {
                     </div>
                     <div className="w-full p-4 mb-8">
                         <h3>Neighbouring Countries</h3>
-                        <div className="flex gap-4 py-2">
+                        <div className="flex gap-4 py-2 flex-wrap">
                             {country.borders.map(
                                 (border: string, index: number) => (
                                     <NeighbouringCountry
