@@ -1,5 +1,6 @@
 import { useCountry } from "../../../hooks/useCountry";
 import { Link } from "react-router";
+import { NeighbouringCountrySkeleton } from "../skeleton/components/NeighbouringCountrySkeleton";
 export const NeighbouringCountry = ({
     code,
     delay = 0,
@@ -9,7 +10,7 @@ export const NeighbouringCountry = ({
 }) => {
     const { country, loading } = useCountry(code, delay);
     if (loading) {
-        return <div>esta Cargando</div>;
+        return <NeighbouringCountrySkeleton/>;
     }
     if (!country) {
         return null;
