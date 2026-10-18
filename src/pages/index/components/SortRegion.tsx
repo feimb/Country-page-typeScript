@@ -1,13 +1,12 @@
 import  type{ Dispatch,SetStateAction  } from "react";
 
-export const SortRegion = ({regions ,setRegions}:{regions: Array<String | "" >; setRegions: Dispatch<SetStateAction<String[]>>}) => {
-    const buttons = ["Americas", "Antartic", "Africa", "Asia", "Europe","Oceania"];
+export const SortRegion = ({regions ,setRegions}:{regions:string; setRegions: Dispatch<SetStateAction<string>>}) => {
+    const buttons = ["Americas", "Antarctic", "Africa", "Asia", "Europe","Oceania"];
     const handleClick = (button: string) => {
-        if(!regions.includes(button)){
-            setRegions(prev => [...prev, button]);
+        if(regions !== button){
+            setRegions(button);
         }else{
-              
-            setRegions(prev => prev.filter(value => value !==button))
+            setRegions("");
         }
         
     };
