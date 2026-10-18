@@ -87,7 +87,7 @@ export const CountryPageSkeleton = () => {
                         <div className="flex gap-x-4 py-2 flex-wrap ">
                  
                             {Array.from({ length: 5 }).map((_, index) => (
-                                <NeighbouringCountrySkeleton/>
+                                <NeighbouringCountrySkeleton key={index}/>
                             ))}
                         </div>
                     </div>
