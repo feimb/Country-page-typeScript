@@ -11,10 +11,13 @@ export const Index = () => {
     const [loadig, setLoading] = useState<boolean>(true);
 
     const [countrys, setCountrys] = useState<any[]>([]);
+    // variables de busqueda
     const [search, setSearch] = useState<string | null>(null);
+    const [regions, setRegions] = useState<String[]>([])
+    //varia bles de pagina
     const [total, setTotal] = useState<number>(0);
     const [page, setPage] = useState<number>(0);
-
+    
     useEffect(() => {
         const fetchCountries = async () => {
             try {
@@ -65,7 +68,7 @@ export const Index = () => {
                     <div className="w-full md:grid grid-cols-12">
                         <div className=" md:col-span-2">
                             <SortBy />
-                            <SortRegion />
+                            <SortRegion regions={regions} setRegions={setRegions}/>
                             <SortMember />
                         </div>
                         {countrys.length > 0 && (

@@ -1,14 +1,14 @@
-import { useState } from "react";
+import  type{ Dispatch,SetStateAction  } from "react";
 
-export const SortRegion = () => {
+export const SortRegion = ({regions ,setRegions}:{regions: Array<String | "" >; setRegions: Dispatch<SetStateAction<String[]>>}) => {
     const buttons = ["Americas", "Antartic", "Africa", "Asia", "Europe","Oceania"];
-    const [activeButton, setActiveButton] = useState<string>("");
     const handleClick = (button: string) => {
-        if (!activeButton.includes(button)){
-            setActiveButton( `${activeButton} ${button}`);
-        }else(
-            setActiveButton(activeButton.replace(button, " "))
-        )
+        if(!regions.includes(button)){
+            setRegions(prev => [...prev, button]);
+        }else{
+              
+            setRegions(prev => prev.filter(value => value !==button))
+        }
         
     };
     return (
@@ -17,7 +17,7 @@ export const SortRegion = () => {
             <div>
                 {buttons.map((button) => (
                     <button
-                        className={`px-2 py-1.5 m-1 text-sm  font-primary font-medium  bg-border-primary  rounded-xl cursor-pointer ${activeButton.includes(button) ? "bg-primary" : ""} transition-all duration-300`}
+                        className={`px-2 py-1.5 m-1 text-sm  font-primary font-medium  bg-border-primary  rounded-xl cursor-pointer ${regions.includes(button) ? "bg-primary" : ""} transition-all duration-300`}
                         onClick={() => handleClick(button)}
                         key={button}
                     >
