@@ -13,7 +13,7 @@ export const Index = () => {
     const [countrys, setCountrys] = useState<any[]>([]);
     // variables de busqueda
     const [search, setSearch] = useState<string | null>(null);
-    const [regions, setRegions] = useState<String[]>([])
+    const [regions, setRegions] = useState<string>("")
     //varia bles de pagina
     const [total, setTotal] = useState<number>(0);
     const [page, setPage] = useState<number>(0);
@@ -21,17 +21,21 @@ export const Index = () => {
     useEffect(() => {
         const fetchCountries = async () => {
             try {
-                let data;
+                let data:any;
 
-                if (!search?.trim()) {
-                    data = await getCountrys(25, page * 25);
+                if (!search?.trim()|| regions.length > 0) {
+                    data = await getCountrys(25, page * 25, regions);
+                    setCountrys(data.data.objects);
+                    setLoading(true)
                 } else {
-                    data = await getCountrys(25, page * 25, search);
+                    data = await getCountrys(25, page * 25, regions ,search);
+                    
+                    setCountrys((prev) => [...prev, ...data.data.objects]);
+                    
                 }
-
-                console.log(data.data);
+                
                 setTotal(data.data.meta.total);
-                setCountrys((prev) => [...prev, ...data.data.objects]);
+                console.log(data.data);
             } catch (err) {
                 console.error(err);
             } finally {
@@ -42,7 +46,7 @@ export const Index = () => {
             fetchCountries();
         }, 1000);
         return () => clearTimeout(timer);
-    }, [search, page]);
+    }, [search, page, regions]);
 
     const titles: Array<string> = [
         "Flag",
