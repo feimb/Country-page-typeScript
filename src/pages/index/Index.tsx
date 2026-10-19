@@ -14,6 +14,7 @@ export const Index = () => {
     // variables de busqueda
     const [search, setSearch] = useState<string | null>(null);
     const [regions, setRegions] = useState<string>("")
+    const [sortBy, setSortBy] = useState<string>("")
     //varia bles de pagina
     const [total, setTotal] = useState<number>(0);
     const [page, setPage] = useState<number>(0);
@@ -22,11 +23,11 @@ export const Index = () => {
         const fetchCountries = async () => {
             try {
                 let data:any;
-
+              
                 if (!search?.trim()|| regions.length > 0) {
                     data = await getCountrys(25, page * 25, regions);
-                    setCountrys(data.data.objects);
                     setLoading(true)
+                    setCountrys(data.data.objects);
                 } else {
                     data = await getCountrys(25, page * 25, regions ,search);
                     
@@ -46,7 +47,7 @@ export const Index = () => {
             fetchCountries();
         }, 1000);
         return () => clearTimeout(timer);
-    }, [search, page, regions]);
+    }, [search, page, regions, sortBy]);
 
     const titles: Array<string> = [
         "Flag",
@@ -71,7 +72,7 @@ export const Index = () => {
                     </div>
                     <div className="w-full md:grid grid-cols-12">
                         <div className=" md:col-span-2">
-                            <SortBy />
+                            <SortBy setSortBy={setSortBy}/>
                             <SortRegion regions={regions} setRegions={setRegions}/>
                             <SortMember />
                         </div>
