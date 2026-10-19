@@ -2,7 +2,7 @@ import {ChevronDown} from "lucide-react"
 import "./selector.css"
 import type { Dispatch } from "react";
 
-export const Selector = ({setSortBy}:{setSortBy:any}) => {
+export const Selector = ({setSortBy}:{setSortBy:Dispatch<string>}) => {
     return (
         <div className=" relative flex ">
             <select
