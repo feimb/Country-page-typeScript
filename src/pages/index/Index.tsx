@@ -15,6 +15,11 @@ export const Index = () => {
     const [search, setSearch] = useState<string | null>(null);
     const [regions, setRegions] = useState<string>("")
     const [sortBy, setSortBy] = useState<string>("")
+
+    const checks:{label:string, isActive:boolean}[] = [
+        { label: "Member of the United Nations", isActive: false },
+        {label: "Independent", isActive: false},
+    ];
     //varia bles de pagina
     const [total, setTotal] = useState<number>(0);
     const [page, setPage] = useState<number>(0);
@@ -74,7 +79,7 @@ export const Index = () => {
                         <div className=" md:col-span-2">
                             <SortBy setSortBy={setSortBy}/>
                             <SortRegion regions={regions} setRegions={setRegions}/>
-                            <SortMember />
+                            <SortMember checks={checks}/>
                         </div>
                         {countrys.length > 0 && (
                             <CountrySection

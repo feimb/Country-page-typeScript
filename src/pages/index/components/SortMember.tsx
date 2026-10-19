@@ -1,10 +1,7 @@
 import { CheckBox } from "./subComponents/CheckBox";
 
-export const SortMember = () => {
-    const checks = [
-        { label: "Member of the United Nations", isActive: true },
-        {label: "Independent", isActive: false},
-    ];
+export const SortMember = ({checks}:{checks:{label:string, isActive:boolean}[]}) => {
+
     return (
         <div>
             <h3 className="mt-4 text-xs font-bold">Status</h3>
