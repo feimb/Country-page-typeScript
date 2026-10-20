@@ -6,6 +6,7 @@ import { SortBy } from "./components/SortBy";
 import { SortRegion } from "./components/SortRegion";
 import { SortMember } from "./components/SortMember";
 import { CountrySection } from "./components/CountrySection";
+import getAllCountries from "../../hooks/getAllCountries";
 
 export const Index = () => {
     const [loadig, setLoading] = useState<boolean>(true);
@@ -13,46 +14,65 @@ export const Index = () => {
     const [countrys, setCountrys] = useState<any[]>([]);
     // variables de busqueda
     const [search, setSearch] = useState<string | null>(null);
-    const [regions, setRegions] = useState<string>("")
-    const [sortBy, setSortBy] = useState<string>("")
+    const [regions, setRegions] = useState<string>("");
+    const [sortBy, setSortBy] = useState<string>("");
 
-    const checks:{label:string, isActive:boolean}[] = [
+    const checks: { label: string; isActive: boolean }[] = [
         { label: "Member of the United Nations", isActive: false },
-        {label: "Independent", isActive: false},
+        { label: "Independent", isActive: false },
     ];
     //varia bles de pagina
-    const [total, setTotal] = useState<number>(0);
+    const [total, setTotal] = useState<number | null>(0);
     const [page, setPage] = useState<number>(0);
-    
+
+    // useEffect(() => {
+    //     const fetchCountries = async () => {
+    //         try {
+    //             if(countrys.length === 0){
+    //                 const {allCountries, metaData} = await getAllCountries()
+    //                 setTotal(metaData.total);
+    //                 console.log(allCountries);
+    //                 setCountrys(allCountries);
+    //             }
+    //             // if (!search?.trim()|| regions.length > 0) {
+    //             //     data = await getCountrys(25, page * 25, regions);
+    //             //     setLoading(true)
+    //             //     setCountrys(data.data.objects);
+    //             // } else {
+    //             //     data = await getCountrys(25, page * 25, regions ,search);
+
+    //             //     setCountrys((prev) => [...prev, ...data.data.objects]);
+
+    //             // }
+
+    //             // setTotal(data.data.meta.total);
+    //             // console.log(data.data);
+    //         } catch (err) {
+    //             console.error(err);
+    //         } finally {
+    //             setLoading(false);
+    //         }
+    //     };
+    //         fetchCountries();
+    // }, [search, page, regions, sortBy]);
     useEffect(() => {
         const fetchCountries = async () => {
             try {
-                let data:any;
-              
-                if (!search?.trim()|| regions.length > 0) {
-                    data = await getCountrys(25, page * 25, regions);
-                    setLoading(true)
-                    setCountrys(data.data.objects);
-                } else {
-                    data = await getCountrys(25, page * 25, regions ,search);
-                    
-                    setCountrys((prev) => [...prev, ...data.data.objects]);
-                    
-                }
+                const { allCountries, metaData } = await getAllCountries();
+
+
+                console.log(allCountries);
                 
-                setTotal(data.data.meta.total);
-                console.log(data.data);
+                setTotal(metaData.total);
+                setCountrys(allCountries);
             } catch (err) {
                 console.error(err);
             } finally {
                 setLoading(false);
             }
         };
-        const timer = setTimeout(() => {
-            fetchCountries();
-        }, 1000);
-        return () => clearTimeout(timer);
-    }, [search, page, regions, sortBy]);
+        fetchCountries();
+    }, []);
 
     const titles: Array<string> = [
         "Flag",
@@ -77,9 +97,12 @@ export const Index = () => {
                     </div>
                     <div className="w-full md:grid grid-cols-12">
                         <div className=" md:col-span-2">
-                            <SortBy setSortBy={setSortBy}/>
-                            <SortRegion regions={regions} setRegions={setRegions}/>
-                            <SortMember checks={checks}/>
+                            <SortBy setSortBy={setSortBy} />
+                            <SortRegion
+                                regions={regions}
+                                setRegions={setRegions}
+                            />
+                            <SortMember checks={checks} />
                         </div>
                         {countrys.length > 0 && (
                             <CountrySection
@@ -88,14 +111,14 @@ export const Index = () => {
                             />
                         )}
                         {total > 25 && (
-                                <button
-                                    className="w-full mt-4 text-lg font-bold flex justify-center md:col-start-3 md:col-span-10 hover:underline hover:cursor-pointer"
-                                    onClick={() => {
-                                        setPage(page + 1);
-                                    }}
-                                >
-                                    view more countrys
-                                </button>
+                            <button
+                                className="w-full mt-4 text-lg font-bold flex justify-center md:col-start-3 md:col-span-10 hover:underline hover:cursor-pointer"
+                                onClick={() => {
+                                    setPage(page + 1);
+                                }}
+                            >
+                                view more countrys
+                            </button>
                         )}
                     </div>
                 </div>
