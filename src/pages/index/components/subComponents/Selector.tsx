@@ -14,7 +14,7 @@ export const Selector = ({setSortBy}:{setSortBy:Dispatch<string>}) => {
                     console.log(e.currentTarget.value);
                 }}
             >
-                <option value="none">None</option>
+                <option value="">None</option>
                 <option value="population">Population</option>
                 <option value="area">Area(km²)</option>
             </select>

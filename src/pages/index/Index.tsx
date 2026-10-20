@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import getCountrys from "../../services/getCountrys";
+import { useEffect, useMemo, useState } from "react";
 import { CardSkeleton } from "./Skeleton/CardSkeleton";
 import { SearchInput } from ".//components/SearchInput";
 import { SortBy } from "./components/SortBy";
@@ -17,12 +16,15 @@ export const Index = () => {
     const [regions, setRegions] = useState<string>("");
     const [sortBy, setSortBy] = useState<string>("");
 
-    const checks: { label: string; isActive: boolean }[] = [
+    const [checks, setChecks] = useState<
+        { label: string; isActive: boolean }[]
+    >([
         { label: "Member of the United Nations", isActive: false },
         { label: "Independent", isActive: false },
-    ];
+    ]);
+
     //varia bles de pagina
-    const [total, setTotal] = useState<number | null>(0);
+    const [total, setTotal] = useState<number>(0);
     const [page, setPage] = useState<number>(0);
 
     // useEffect(() => {
@@ -53,16 +55,18 @@ export const Index = () => {
     //             setLoading(false);
     //         }
     //     };
-    //         fetchCountries();
+    //         const timer = setTimeout(() => {
+    //          fetchCountries();
+    //     }, 1000);
+    //     return () => clearTimeout(timer);
     // }, [search, page, regions, sortBy]);
     useEffect(() => {
         const fetchCountries = async () => {
             try {
                 const { allCountries, metaData } = await getAllCountries();
 
-
                 console.log(allCountries);
-                
+
                 setTotal(metaData.total);
                 setCountrys(allCountries);
             } catch (err) {
@@ -73,7 +77,59 @@ export const Index = () => {
         };
         fetchCountries();
     }, []);
+    // useEffect(() => {
+    //     const searchCountries = async () => {
+    //         try {
+    //             const query = search?.toLowerCase().trim();
+    //             setFilterCountrys(
+    //                 countrys.filter((country) =>
+    //                     country.names.common.toLowerCase().includes(query),
+    //                 ),
+    //             );
+    //         } catch (err) {
+    //             console.error(err);
+    //         } finally {
+    //             console.log(filterCountrys);
+    //         }
+    //     };
+    //     const timer = setTimeout(() => {
+    //         searchCountries();
+    //     }, 100);
+    //     return () => clearTimeout(timer);
+    // }, [search, regions, sortBy]);
+    const filterCountrys = useMemo(() => {
+        let result = [...countrys];
+        const query = search?.toLowerCase().trim();
+        if (query !== undefined) {
+            result = result.filter((country) =>
+                country.names.common.toLowerCase().includes(query),
+            );
+        }
+        if (regions.length > 0) {
+            result = result.filter((country) => regions === country.region);
+        }
+        if (sortBy === "population") {
+            result = result.sort((a, b) => b.population - a.population);
+        }
+        if (sortBy === "area") {
+            result = result.sort(
+                (a, b) => b.area.kilometers - a.area.kilometers,
+            );
+        }
+        if (checks[0].isActive) {
+            result = result.filter(
+                (country) => country.parent.alpha_3 === "USA",
+            );
+        }
+        if (checks[1].isActive) {
+            result = result.filter(
+                (country) => country.classification.sovereign,
+            );
+        }
+        console.log(result);
 
+        return result;
+    }, [countrys, search, regions, sortBy, checks]);
     const titles: Array<string> = [
         "Flag",
         "Name",
@@ -102,12 +158,12 @@ export const Index = () => {
                                 regions={regions}
                                 setRegions={setRegions}
                             />
-                            <SortMember checks={checks} />
+                            <SortMember checks={checks} setChecks={setChecks} />
                         </div>
-                        {countrys.length > 0 && (
+                        {filterCountrys.length > 0 && (
                             <CountrySection
                                 titles={titles}
-                                countrys={countrys}
+                                countrys={filterCountrys}
                             />
                         )}
                         {total > 25 && (
