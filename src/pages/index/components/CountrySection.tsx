@@ -3,7 +3,7 @@ import { CountryRow } from "./subComponents/CountryRow";
 
 export const CountrySection = ({titles, countrys}:{titles:Array<string>, countrys:any}) => {
     return (
-        <section className="mt-8 md:mt-0 col-span-10 md:px-8 border-separate border-spacing-y-4">
+        <section className="mt-8 md:mt-0 col-span-10 md:px-8 border-separate border-spacing-y-4 overflow-x-scroll">
             <table className="w-full h-full ">
                 <thead className=" ">
                     <tr className="text-xs font-bold  ">
